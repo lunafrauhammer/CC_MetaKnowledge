@@ -1,0 +1,196 @@
+---
+title: 'The effects of climate change meta-knowledge on selective exposure, selective elaboration, and behavioral intentions'
+output: html_document
+---
+
+```{r, results="asis", echo = FALSE}
+cat("<style>
+.table-hover > tbody > tr:hover { 
+  background-color:	#8db6cd;
+}
+</style>")
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(kableExtra)
+
+cd1 <- function(t, n1, n2){
+  abs(t * sqrt(1/n1 + 1/n2))
+}
+```
+
+
+*Luna Frauhammer* <br>
+This is the power simulation for the study “The effects of climate change meta-knowledge on selective exposure, selective elaboration, and behavioral intentions”. In this experiment, participants’ subjective climate change knowledge (SK) is manipulated through providing fake feedback in a climate change knowledge test. We then measure its effect on related behaviors (signing a petition / donating money) as well as selective exposure to and selective elaboration of climate change related information. 
+
+<br>
+
+There exist not many reference values from prior studies, and we thus base our sample size considerations mainly on the hypothesis on the SK – behavior effect, since we have most information on this relationship. For the hypotheses on selective exposure and selective elaboration, we instead go with considerations about the smallest effect size of interest (SESOI) as well as feasibility. 
+
+
+
+### 1. Summary of Results
+
+We plan to collect data of *N* = 510 participants. With this sample size, we can detect an effect of subjective knowledge on the measured behaviors (signing a petition, donating money) with an Odds Ratio of 1.8 with a probability of 1 - $\beta$ $\approx$ 0.8 (Bonferroni corrected $\alpha$ = 0.025). In the Chi-squared test, this corresponds to a small effect, Cramers V $\approx$ 0.15. <br>
+Regarding the second and third hypotheses (effects of subjective knowledge selective exposure and elaboration), this sample size can detect small to medium effects (cohens d = 0.30) with high statistical power (1 - $\beta$ > 0.8, Bonferroni corrected $\alpha$ = 0.017). <br> 
+
+Please consult the remaining document for information on how we determined these effect sizes and how the power simulation was performed.
+ 
+
+### 2. Calculation and Detailed Explanation 
+
+Our estimates of the effect sizes are based on results from our pilot study (regarding the induced difference in SK by the manipulation) and prior literature. The pilot study pretested the manipulation, and we observed mean SK values of 4.65 (sd = 1.17) in the high SK condition and 3.53 (1.49) in the low SK condition (1-7 scale).
+
+#### 2.1 Effect on behaviors (signing a petition / donating money)
+
+Hypothesis 1 assumes subjective climate change knowledge to causally affect the likelihood to elicit related behaviors. More specifically, we assess participants' likelihood to donate money and to sign a petition. Since we have two DVs, the alpha level is adjusted to $\alpha$ = .025
+
+Although our hypothesis is tested via a group comparison (SK high vs. low), the underlying process is assumed to be continuous and depend on the latent variable subjective knowledge. The manipulation is assumed to induce two offset distributions of this latent variable (M~high~ = 4.65, sd = 1.17, M~low~ = 3.53, sd = 1.49; taken from pilot study). A one-unit increase in this latent variable is assumed to relate to our binary DVs with an OR of 1.8 (cf. Frauhammer & Neubaum, 2023). To simulate the expected results, we procede in the following way: 
+
+1. **Model expected SK distributions for both conditions**, based on the results of our pretest 
+2. **Model the relationship between the continuous SK variable and the probability to show related behaviors**. Effect estimates are taken from Frauhammer & Neubaum (2023) which measured SK in the same way as the manipulation check in our pilot study. Here, SK was related to the itention to attend an online information event with an Odds Ratio of 1.82. Hence, this study investigated a different dependent variable than the present experiment. We therefore also consulted Luo & Zhao (2019), which used the same DVs than we did, but had different IVs (among others, political orientation), to get an idea whether this effect size is plausible. The effect we assume (OR = 1.8 for one point difference in SK) is about half the effect size these authors found for the difference in donating money between conservatives and liberals (OR = 2.37) and about one third of the effect the authors reported for signing a petition (OR = 4.1), which seems plausible to us. Since we do not have enough information on possible differences between the DVs, we chose to assume the same effect size for both. 
+3. **Create a dichotomous variable (Signing Petition: yes / no, donating: yes / no) based on these probabilities**
+4. **Perform Chi-Squared Test**
+5. **Repeat 1000 times and estimate power**
+
+
+```{r}
+nsim <- 1000 # number of simulations
+a <- log(0.2 / 0.8) # Probability to sign petition if SK = 0
+b <- log(1.8) # OR for 1 point difference in latent SK 
+# value taken from prior literature (Frauhammer & Neubaum, 2023) 
+
+p_Petition <- function(x){
+  exp(a + b*x) /  (1 + exp(a + b*x))
+}
+
+Results <- data.frame(GroupSize = NA, Power = NA)
+j <- 1
+Power <- 0
+n <- m <- 220 # group size
+while(Power < .80){
+  OR <- NULL
+  p <- NULL
+  for(s in 1:nsim){
+    # simulate latent variables for SK in both conditions 
+    # (Means and SDs taken from pre-test):
+    SK_high <- rnorm(n = n, mean = 4.65, sd = 1.17)
+    SK_low <- rnorm(n = m, mean = 3.53, sd = 1.49) 
+    dat <- data.frame(SK = c(SK_high, SK_low), 
+                      Condition = rep(c(1, 0), c(n, m)))
+    
+    # calculate each person's probability to sign the Petition:
+    dat$p_Petition <- p_Petition(dat$SK) 
+    # Use these probabilities to create the binary variable (Petition: yes / no?):
+    dat$Petition <- rbinom(nrow(dat), 1, dat$p_Petition) 
+    
+    M2 <- glm(Petition ~ Condition, dat, family = binomial)
+    OR[s] <- exp(coef(M2)[2]) # check whether OR is correct
+    table(dat$Petition, dat$Condition) 
+    # perform chi-squared Test and extract p-value:
+    p[s] <- chisq.test(table(dat$Petition, dat$Condition) )$p.value
+  }
+
+  mean(OR) # parameter recovery: should be ~1.8
+  
+  # calculate power: 
+  Power <- mean(p < 0.025) # alpha is set to .025 to correct for multiple comparisons
+  Results[j, ] <- c(n, Power)
+  n <- n + 5 # increase group size
+  m <- m + 5
+  j <- j+1
+}
+
+```
+
+<br>
+
+##### Results: 
+
+```{r, echo = FALSE, results='asis'}
+library(knitr)
+final_result <- which(Results$Power >= 0.80)[1]
+final_n <- Results[which(Results$Power >= 0.80)[1], ]$GroupSize
+kable(Results, align = rep("l", ncol(Results))) %>%
+  row_spec(final_result, bold = T, background = "#f9cee3")  %>%
+  kable_styling(position = "left", bootstrap_options = c("striped", "hover")) 
+```
+*Note.* The table shows the power estimates for different group sizes (sample size = 2 * group size), when testing the simulated effects with a chi-squared test. The highlighted row represents the finally selected sample size. 
+
+<br>
+
+#### 2.2 Effect on selected elaboration
+
+The estimation of these effects is more difficult since there does not  exist a lot of comparable literature we can consult. 
+
+For the hypothesis regarding selected elaboration, we have three DVs (reading time, self report, and performance in a surprise memory test). We thus use a corrected alpha level of alpha = 0.05 / 3 = 0.017. We consulted experiments having a somewhat similar design / similar DVs (Schmitt et al., 2017; Wood & Lynch, 2004) and chose to power the experiment to detect a standardized mean difference of d = 0.30. This effect size is smaller than what the other studies have found. However, these studies diverge somewhat from our design and have only small samples. We chose the mean difference of d = 0.30 as a compromise between what minimal effect size we categorize as interesting (SESOI), what effect size we would expect (educated guess based on prior literature), and what is feasible for us. 
+
+The following power analysis is based on considerations regarding the DV reading time. However, since we chose the numbers to reflect the standardized effect size of interest (d = 0.30), and we do not have enough information to assume different results for the different DVs, the results are used as basis for all three DVs. 
+
+```{r}
+nsim <- 1000
+n <- m <- 220
+Power <- 0
+j <- 1
+d <- NULL
+Results <- data.frame(GroupSize = NA, Power = NA)
+while(n <= 255 | Power < 0.80){
+  p <- NULL
+  for(s in 1:nsim){
+    # set values so that d = 0.30:
+    duration_high <- rnorm(n, mean = 55, sd = 33.33) 
+    duration_low <- rnorm(m, mean = 65, sd = 33.33)
+    # In this case, these numbers are supposed to stand for the reading time 
+    # grand mean = 60 seconds, SD = 33.33 seconds, mean difference between conditions
+    # = 10 seconds. However, these values are chosen to present an effect of 
+    # small to medium effect size (d = 0.30) which is plausible for all 
+    # dependent variables. 
+    
+    SK <- rep(c(1, 0), c(n, m)) # SK high (1) or low (0)
+    
+    dat <- data.frame(duration = c(duration_low, duration_high), SK = SK)
+    
+    p[s] <- t.test(duration ~ SK, dat)$p.value
+    d[s] <- cd1(t.test(duration ~ SK, dat)$statistic, n, m)
+  }
+  Power <- mean(p < .017)
+  Results[j, ] <- c(n, Power)
+  n <- n + 5 # increase group size
+  m <- m + 5
+  j <- j+1
+}
+```
+
+##### Results:
+
+```{r, echo = FALSE, results='asis'}
+library(knitr)
+min_result <- which(Results$Power >= 0.80)[1]
+min_n <- Results[which(Results$Power >= 0.80)[1], ]$GroupSize
+final_result <- which(Results$GroupSize == 255)
+kable(Results, align = rep("l", ncol(Results))) %>%
+  row_spec(min_result, bold = T, background = "#C2E1C2")  %>%
+  row_spec(final_result, bold = T, background = "#f9cee3")  %>%
+  kable_styling(position = "left", bootstrap_options = c("striped", "hover")) 
+```
+
+*Note.* The table shows the power estimates for different group sizes (sample size = 2 * group size), when testing the simulated effects (d = 0.30) using a t-test and adjusted alpha of $\alpha$ = 0.017. The row highlighted in green represents the minimum sample size required to observe this effect with statistical power of 80%, and the row highlighted in pink represents the finally selected sample size (based on simulations for H1). 
+
+#### 3. Effect on Selective Exposure 
+
+Finally, we expect to find group differences in selective exposure. Unfortunately, for this hypothesis as well, we have too little reference values to simulate an appropriate prediction. We thus again point to our considerations about the SESOI in the above paragraph. Since we do not deploy alpha-level correction in this hypothesis (since there is only one DV), we can find standardized mean differences with effect sizes until *d* = 0.23 with high statistical power with 1 - $\beta$ > 0.8. 
+
+#### 4. Literature 
+
+<div style="text-indent: -40px; padding-left: 40px;">
+
+Frauhammer, L. T., & Neubaum, G. (2023). Metacognitive effects of attitudinal (in)congruence on social media: Relating processing fluency, subjective knowledge, and political participation. *Frontiers in Psychology, 14.*
+
+Schmitt, J. B., Schneider, F. M., Weinmann, C., & Roth, F. S. (2019). Saving Tiger, Orangutan & Co: How subjective knowledge and text complexity influence online information seeking and behavior. *Information, Communication & Society, 22(9)*, 1193–1211. <br>
+
+Wood, S. L., & Lynch, J. G. (2002). Prior Knowledge and Complacency in New Product Learning. *JOURNAL OF CONSUMER RESEARCH, 11.*
+
+</div>
+

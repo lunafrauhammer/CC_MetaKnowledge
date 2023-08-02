@@ -1,0 +1,12 @@
+---
+title: "Climate Change Meta-Knowledge"
+output: 
+  html_document:
+    includes:
+      after_body: after_body.html
+---
+ 
+This is the main page for the Climate Change Meta-Knowledge Project. <br><br>
+You can find the power analysis [here](https://lunafrauhammer.github.io/CC_MetaKnowledge/Power) <br>
+You can find all code and data in the corresponding [github project](https://github.com/lunafrauhammer/CC_MetaKnowledge) <br>
+All other supplementary materials are stored on the osf project site *Link will follow*

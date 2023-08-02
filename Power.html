@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>The effects of climate change meta-knowledge on selective exposure, selective elaboration, and behavioral intentions</title>
+
+<script src="site_libs/header-attrs-2.23/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/readable.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Climate Change Meta-Knowledge</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="https://lunafrauhammer.github.io/CC_MetaKnowledge">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li>
+  <a href="https://lunafrauhammer.github.io/CC_MetaKnowledge/Power">
+    <span class="fa fa-bar-chart"></span>
+     
+    Power Analysis
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/lunafrauhammer/CC_MetaKnowledge">
+    <span class="fa fa-github"></span>
+     
+    GitHub Project
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">The effects of climate change
+meta-knowledge on selective exposure, selective elaboration, and
+behavioral intentions</h1>
+
+</div>
+
+
+<style>
+.table-hover > tbody > tr:hover { 
+  background-color: #8db6cd;
+}
+</style>
+<p><em>Luna Frauhammer</em> <br> This is the power simulation for the
+study “The effects of climate change meta-knowledge on selective
+exposure, selective elaboration, and behavioral intentions”. In this
+experiment, participants’ subjective climate change knowledge (SK) is
+manipulated through providing fake feedback in a climate change
+knowledge test. We then measure its effect on related behaviors (signing
+a petition / donating money) as well as selective exposure to and
+selective elaboration of climate change related information.</p>
+<p><br></p>
+<p>There exist not many reference values from prior studies, and we thus
+base our sample size considerations mainly on the hypothesis on the SK –
+behavior effect, since we have most information on this relationship.
+For the hypotheses on selective exposure and selective elaboration, we
+instead go with considerations about the smallest effect size of
+interest (SESOI) as well as feasibility.</p>
+<div id="summary-of-results" class="section level3">
+<h3>1. Summary of Results</h3>
+<p>We plan to collect data of <em>N</em> = 510 participants. With this
+sample size, we can detect an effect of subjective knowledge on the
+measured behaviors (signing a petition, donating money) with an Odds
+Ratio of 1.8 with a probability of 1 - <span
+class="math inline">\(\beta\)</span> <span
+class="math inline">\(\approx\)</span> 0.8 (Bonferroni corrected <span
+class="math inline">\(\alpha\)</span> = 0.025). In the Chi-squared test,
+this corresponds to a small effect, Cramers V <span
+class="math inline">\(\approx\)</span> 0.15. <br> Regarding the second
+and third hypotheses (effects of subjective knowledge selective exposure
+and elaboration), this sample size can detect small to medium effects
+(cohens d = 0.30) with high statistical power (1 - <span
+class="math inline">\(\beta\)</span> &gt; 0.8, Bonferroni corrected
+<span class="math inline">\(\alpha\)</span> = 0.017). <br></p>
+<p>Please consult the remaining document for information on how we
+determined these effect sizes and how the power simulation was
+performed.</p>
+</div>
+<div id="calculation-and-detailed-explanation" class="section level3">
+<h3>2. Calculation and Detailed Explanation</h3>
+<p>Our estimates of the effect sizes are based on results from our pilot
+study (regarding the induced difference in SK by the manipulation) and
+prior literature. The pilot study pretested the manipulation, and we
+observed mean SK values of 4.65 (sd = 1.17) in the high SK condition and
+3.53 (1.49) in the low SK condition (1-7 scale).</p>
+<div id="effect-on-behaviors-signing-a-petition-donating-money"
+class="section level4">
+<h4>2.1 Effect on behaviors (signing a petition / donating money)</h4>
+<p>Hypothesis 1 assumes subjective climate change knowledge to causally
+affect the likelihood to elicit related behaviors. More specifically, we
+assess participants’ likelihood to donate money and to sign a petition.
+Since we have two DVs, the alpha level is adjusted to <span
+class="math inline">\(\alpha\)</span> = .025</p>
+<p>Although our hypothesis is tested via a group comparison (SK high
+vs. low), the underlying process is assumed to be continuous and depend
+on the latent variable subjective knowledge. The manipulation is assumed
+to induce two offset distributions of this latent variable
+(M<sub>high</sub> = 4.65, sd = 1.17, M<sub>low</sub> = 3.53, sd = 1.49;
+taken from pilot study). A one-unit increase in this latent variable is
+assumed to relate to our binary DVs with an OR of 1.8 (cf. Frauhammer
+&amp; Neubaum, 2023). To simulate the expected results, we procede in
+the following way:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Model expected SK distributions for both
+conditions</strong>, based on the results of our pretest</li>
+<li><strong>Model the relationship between the continuous SK variable
+and the probability to show related behaviors</strong>. Effect estimates
+are taken from Frauhammer &amp; Neubaum (2023) which measured SK in the
+same way as the manipulation check in our pilot study. Here, SK was
+related to the itention to attend an online information event with an
+Odds Ratio of 1.82. Hence, this study investigated a different dependent
+variable than the present experiment. We therefore also consulted Luo
+&amp; Zhao (2019), which used the same DVs than we did, but had
+different IVs (among others, political orientation), to get an idea
+whether this effect size is plausible. The effect we assume (OR = 1.8
+for one point difference in SK) is about half the effect size these
+authors found for the difference in donating money between conservatives
+and liberals (OR = 2.37) and about one third of the effect the authors
+reported for signing a petition (OR = 4.1), which seems plausible to us.
+Since we do not have enough information on possible differences between
+the DVs, we chose to assume the same effect size for both.</li>
+<li><strong>Create a dichotomous variable (Signing Petition: yes / no,
+donating: yes / no) based on these probabilities</strong></li>
+<li><strong>Perform Chi-Squared Test</strong></li>
+<li><strong>Repeat 1000 times and estimate power</strong></li>
+</ol>
+<pre class="r"><code>nsim &lt;- 1000 # number of simulations
+a &lt;- log(0.2 / 0.8) # Probability to sign petition if SK = 0
+b &lt;- log(1.8) # OR for 1 point difference in latent SK 
+# value taken from prior literature (Frauhammer &amp; Neubaum, 2023) 
+
+p_Petition &lt;- function(x){
+  exp(a + b*x) /  (1 + exp(a + b*x))
+}
+
+Results &lt;- data.frame(GroupSize = NA, Power = NA)
+j &lt;- 1
+Power &lt;- 0
+n &lt;- m &lt;- 220 # group size
+while(Power &lt; .80){
+  OR &lt;- NULL
+  p &lt;- NULL
+  for(s in 1:nsim){
+    # simulate latent variables for SK in both conditions 
+    # (Means and SDs taken from pre-test):
+    SK_high &lt;- rnorm(n = n, mean = 4.65, sd = 1.17)
+    SK_low &lt;- rnorm(n = m, mean = 3.53, sd = 1.49) 
+    dat &lt;- data.frame(SK = c(SK_high, SK_low), 
+                      Condition = rep(c(1, 0), c(n, m)))
+    
+    # calculate each person&#39;s probability to sign the Petition:
+    dat$p_Petition &lt;- p_Petition(dat$SK) 
+    # Use these probabilities to create the binary variable (Petition: yes / no?):
+    dat$Petition &lt;- rbinom(nrow(dat), 1, dat$p_Petition) 
+    
+    M2 &lt;- glm(Petition ~ Condition, dat, family = binomial)
+    OR[s] &lt;- exp(coef(M2)[2]) # check whether OR is correct
+    table(dat$Petition, dat$Condition) 
+    # perform chi-squared Test and extract p-value:
+    p[s] &lt;- chisq.test(table(dat$Petition, dat$Condition) )$p.value
+  }
+
+  mean(OR) # parameter recovery: should be ~1.8
+  
+  # calculate power: 
+  Power &lt;- mean(p &lt; 0.025) # alpha is set to .025 to correct for multiple comparisons
+  Results[j, ] &lt;- c(n, Power)
+  n &lt;- n + 5 # increase group size
+  m &lt;- m + 5
+  j &lt;- j+1
+}</code></pre>
+<p><br></p>
+<div id="results" class="section level5">
+<h5>Results:</h5>
+<table class="table table-striped table-hover" style>
+<thead>
+<tr>
+<th style="text-align:left;">
+GroupSize
+</th>
+<th style="text-align:left;">
+Power
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+220
+</td>
+<td style="text-align:left;">
+0.740
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+225
+</td>
+<td style="text-align:left;">
+0.752
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+230
+</td>
+<td style="text-align:left;">
+0.780
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+235
+</td>
+<td style="text-align:left;">
+0.784
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+240
+</td>
+<td style="text-align:left;">
+0.791
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+245
+</td>
+<td style="text-align:left;">
+0.789
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+250
+</td>
+<td style="text-align:left;">
+0.791
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;background-color: #f9cee3 !important;">
+255
+</td>
+<td style="text-align:left;font-weight: bold;background-color: #f9cee3 !important;">
+0.826
+</td>
+</tr>
+</tbody>
+</table>
+<p><em>Note.</em> The table shows the power estimates for different
+group sizes (sample size = 2 * group size), when testing the simulated
+effects with a chi-squared test. The highlighted row represents the
+finally selected sample size.</p>
+<p><br></p>
+</div>
+</div>
+<div id="effect-on-selected-elaboration" class="section level4">
+<h4>2.2 Effect on selected elaboration</h4>
+<p>The estimation of these effects is more difficult since there does
+not exist a lot of comparable literature we can consult.</p>
+<p>For the hypothesis regarding selected elaboration, we have three DVs
+(reading time, self report, and performance in a surprise memory test).
+We thus use a corrected alpha level of alpha = 0.05 / 3 = 0.017. We
+consulted experiments having a somewhat similar design / similar DVs
+(Schmitt et al., 2017; Wood &amp; Lynch, 2004) and chose to power the
+experiment to detect a standardized mean difference of d = 0.30. This
+effect size is smaller than what the other studies have found. However,
+these studies diverge somewhat from our design and have only small
+samples. We chose the mean difference of d = 0.30 as a compromise
+between what minimal effect size we categorize as interesting (SESOI),
+what effect size we would expect (educated guess based on prior
+literature), and what is feasible for us.</p>
+<p>The following power analysis is based on considerations regarding the
+DV reading time. However, since we chose the numbers to reflect the
+standardized effect size of interest (d = 0.30), and we do not have
+enough information to assume different results for the different DVs,
+the results are used as basis for all three DVs.</p>
+<pre class="r"><code>nsim &lt;- 1000
+n &lt;- m &lt;- 220
+Power &lt;- 0
+j &lt;- 1
+d &lt;- NULL
+Results &lt;- data.frame(GroupSize = NA, Power = NA)
+while(n &lt;= 255 | Power &lt; 0.80){
+  p &lt;- NULL
+  for(s in 1:nsim){
+    # set values so that d = 0.30:
+    duration_high &lt;- rnorm(n, mean = 55, sd = 33.33) 
+    duration_low &lt;- rnorm(m, mean = 65, sd = 33.33)
+    # In this case, these numbers are supposed to stand for the reading time 
+    # grand mean = 60 seconds, SD = 33.33 seconds, mean difference between conditions
+    # = 10 seconds. However, these values are chosen to present an effect of 
+    # small to medium effect size (d = 0.30) which is plausible for all 
+    # dependent variables. 
+    
+    SK &lt;- rep(c(1, 0), c(n, m)) # SK high (1) or low (0)
+    
+    dat &lt;- data.frame(duration = c(duration_low, duration_high), SK = SK)
+    
+    p[s] &lt;- t.test(duration ~ SK, dat)$p.value
+    d[s] &lt;- cd1(t.test(duration ~ SK, dat)$statistic, n, m)
+  }
+  Power &lt;- mean(p &lt; .017)
+  Results[j, ] &lt;- c(n, Power)
+  n &lt;- n + 5 # increase group size
+  m &lt;- m + 5
+  j &lt;- j+1
+}</code></pre>
+<div id="results-1" class="section level5">
+<h5>Results:</h5>
+<table class="table table-striped table-hover" style>
+<thead>
+<tr>
+<th style="text-align:left;">
+GroupSize
+</th>
+<th style="text-align:left;">
+Power
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+220
+</td>
+<td style="text-align:left;">
+0.743
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+225
+</td>
+<td style="text-align:left;">
+0.779
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+230
+</td>
+<td style="text-align:left;">
+0.774
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;background-color: #C2E1C2 !important;">
+235
+</td>
+<td style="text-align:left;font-weight: bold;background-color: #C2E1C2 !important;">
+0.809
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+240
+</td>
+<td style="text-align:left;">
+0.818
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+245
+</td>
+<td style="text-align:left;">
+0.829
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+250
+</td>
+<td style="text-align:left;">
+0.822
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;background-color: #f9cee3 !important;">
+255
+</td>
+<td style="text-align:left;font-weight: bold;background-color: #f9cee3 !important;">
+0.854
+</td>
+</tr>
+</tbody>
+</table>
+<p><em>Note.</em> The table shows the power estimates for different
+group sizes (sample size = 2 * group size), when testing the simulated
+effects (d = 0.30) using a t-test and adjusted alpha of <span
+class="math inline">\(\alpha\)</span> = 0.017. The row highlighted in
+green represents the minimum sample size required to observe this effect
+with statistical power of 80%, and the row highlighted in pink
+represents the finally selected sample size (based on simulations for
+H1).</p>
+</div>
+</div>
+<div id="effect-on-selective-exposure" class="section level4">
+<h4>3. Effect on Selective Exposure</h4>
+<p>Finally, we expect to find group differences in selective exposure.
+Unfortunately, for this hypothesis as well, we have too little reference
+values to simulate an appropriate prediction. We thus again point to our
+considerations about the SESOI in the above paragraph. Since we do not
+deploy alpha-level correction in this hypothesis (since there is only
+one DV), we can find standardized mean differences with effect sizes
+until <em>d</em> = 0.23 with high statistical power with 1 - <span
+class="math inline">\(\beta\)</span> &gt; 0.8.</p>
+</div>
+<div id="literature" class="section level4">
+<h4>4. Literature</h4>
+<div style="text-indent: -40px; padding-left: 40px;">
+<p>Frauhammer, L. T., &amp; Neubaum, G. (2023). Metacognitive effects of
+attitudinal (in)congruence on social media: Relating processing fluency,
+subjective knowledge, and political participation. <em>Frontiers in
+Psychology, 14.</em></p>
+<p>Schmitt, J. B., Schneider, F. M., Weinmann, C., &amp; Roth, F. S.
+(2019). Saving Tiger, Orangutan &amp; Co: How subjective knowledge and
+text complexity influence online information seeking and behavior.
+<em>Information, Communication &amp; Society, 22(9)</em>, 1193–1211.
+<br></p>
+<p>Wood, S. L., &amp; Lynch, J. G. (2002). Prior Knowledge and
+Complacency in New Product Learning. <em>JOURNAL OF CONSUMER RESEARCH,
+11.</em></p>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

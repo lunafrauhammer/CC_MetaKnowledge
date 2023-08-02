@@ -1,0 +1,20 @@
+name: "Rmarkdown with navbar"                                
+output_dir: "."
+navbar:
+  title: "Climate Change Meta-Knowledge"
+  type: inverse
+  left: 
+    - text: "Home"
+      icon: fa-home
+      href: https://lunafrauhammer.github.io/CC_MetaKnowledge
+    - text: "Power Analysis"
+      icon: fa-bar-chart
+      href: https://lunafrauhammer.github.io/CC_MetaKnowledge/Power
+  right:
+    - text: "GitHub Project"
+      icon: fa-github
+      href: https://github.com/lunafrauhammer/CC_MetaKnowledge
+output:
+  html_document:
+    theme: readable
+    css: style.css
