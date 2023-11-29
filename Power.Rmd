@@ -125,7 +125,7 @@ kable(Results, align = rep("l", ncol(Results))) %>%
 
 The estimation of these effects is more difficult since there does not  exist a lot of comparable literature we can consult. 
 
-For the hypothesis regarding selected elaboration, we have three DVs (reading time, self report, and performance in a surprise memory test). We thus use a corrected alpha level of alpha = 0.05 / 3 = 0.017. We consulted experiments having a somewhat similar design / similar DVs (Schmitt et al., 2017; Wood & Lynch, 2004) and chose to power the experiment to detect a standardized mean difference of d = 0.30. This effect size is smaller than what the other studies have found. However, these studies diverge somewhat from our design and have only small samples. We chose the mean difference of d = 0.30 as a compromise between what minimal effect size we categorize as interesting (SESOI), what effect size we would expect (educated guess based on prior literature), and what is feasible for us. 
+For the hypothesis regarding selected elaboration, we have three DVs (reading time, self report, and performance in a surprise memory test). We thus use a corrected alpha level of alpha = 0.05 / 3 = 0.017. We consulted experiments having a somewhat similar design / similar DVs (Schmitt et al., 2017; Moorman et al., 2004) and chose to power the experiment to detect a standardized mean difference of d = 0.30. This effect size is smaller than what the other studies have found. However, these studies diverge somewhat from our design and have only small samples. We chose the mean difference of d = 0.30 as a compromise between what minimal effect size we categorize as interesting (SESOI), what effect size we would expect (educated guess based on prior literature), and what is feasible for us. 
 
 The following power analysis is based on considerations regarding the DV reading time. However, since we chose the numbers to reflect the standardized effect size of interest (d = 0.30), and we do not have enough information to assume different results for the different DVs, the results are used as basis for all three DVs. 
 
@@ -188,9 +188,10 @@ Finally, we expect to find group differences in selective exposure. Unfortunatel
 
 Frauhammer, L. T., & Neubaum, G. (2023). Metacognitive effects of attitudinal (in)congruence on social media: Relating processing fluency, subjective knowledge, and political participation. *Frontiers in Psychology, 14.*
 
+Moorman, C., Diehl, K., Brinberg, D., & Kidwell, B. (2004). Subjective Knowledge, Search Locations, and Consumer Choice. *JOURNAL OF CONSUMER RESEARCH*, 8.
+
 Schmitt, J. B., Schneider, F. M., Weinmann, C., & Roth, F. S. (2019). Saving Tiger, Orangutan & Co: How subjective knowledge and text complexity influence online information seeking and behavior. *Information, Communication & Society, 22(9)*, 1193–1211. <br>
 
-Wood, S. L., & Lynch, J. G. (2002). Prior Knowledge and Complacency in New Product Learning. *JOURNAL OF CONSUMER RESEARCH, 11.*
 
 </div>
 
